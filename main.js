@@ -33,6 +33,7 @@ rabbit.move();
 
 var rabbit1 = {};
 
+
 rabbit1.__proto__ = rabbit;
 
 
