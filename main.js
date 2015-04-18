@@ -35,6 +35,7 @@ var rabbit1 = {};
 
 rabbit1.__proto__ = rabbit;
 
+
 console.log("rabbit1.name: " + rabbit1.name);
 console.log("rabbit1 is: " + rabbit1);
 console.log("rabbits1 legs amount is: " + rabbit1.legs);
