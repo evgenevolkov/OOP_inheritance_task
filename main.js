@@ -24,27 +24,27 @@ Animal.prototype.move = function () {
 //
 //animal1.setMovementType(run);
 
-var rabit = new Animal("rabit");
+var rabbit = new Animal("rabbit");
 
-console.log("rabit.name: " + rabit.name);
-console.log("rabit is: " + rabit);
-console.log("rabits legs amount is: " + rabit.legs);
-rabit.move();
+console.log("rabbit.name: " + rabbit.name);
+console.log("rabbit is: " + rabbit);
+console.log("rabbits legs amount is: " + rabbit.legs);
+rabbit.move();
 
-var rabit1 = {};
+var rabbit1 = {};
 
-rabit1.__proto__ = rabit;
+rabbit1.__proto__ = rabbit;
 
-console.log("rabit1.name: " + rabit1.name);
-console.log("rabit1 is: " + rabit1);
-console.log("rabits1 legs amount is: " + rabit1.legs);
-rabit1.move();
+console.log("rabbit1.name: " + rabbit1.name);
+console.log("rabbit1 is: " + rabbit1);
+console.log("rabbits1 legs amount is: " + rabbit1.legs);
+rabbit1.move();
 
 //var animal = { eats: true }
 //var rabbit = { jumps: true }
 
-rabit1.name = "rabit1";
-console.log("now rabit1.name: " + rabit1.name);
+rabbit1.name = "rabbit1";
+console.log("now rabbit1.name: " + rabbit1.name);
 
 
 //rabbit.__proto__ = animal  // inherit
