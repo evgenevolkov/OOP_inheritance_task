@@ -18,7 +18,7 @@ BeingClass.prototype.logName = function () {
     console.log("This.class: " + this.clas + "; this.name: " + this.name + "; this.legs= " + this.legs)
 };
 
-//setting movement methods, strategy and type switch - BEGIN
+//Now I'm setting movement methods, strategy and type switch - BEGIN
 BeingClass.prototype.setMovementType = function (newMovementType) {
     this.movementType = newMovementType;
 };
@@ -46,7 +46,7 @@ var fly = new Movement(function (name) {
 //BeingClass.prototype.speak = function() {
 //    this.speak()
 //};
-// -----
+// ----- Skip END
 
 
 // Now I'm creating animal class. It will be used for all animals.
@@ -60,28 +60,25 @@ var AnimalClass = function (clas, name, legs, movementType) {
 
 AnimalClass.prototype = Object.create(BeingClass.prototype);
 
+// please skip
 //// adding speak method that will say it does't speak.
 //animalClass.speak = function () {
 //    cosole.log(this.name + "is an animal. It can't speak")
 //};
+// skip END
 
 // Now creating first animal - rabbit
 var rabbit = new AnimalClass("Rabbit class", "Rabbit Tim", 4, jump);
-
-// Checking out animal class functions and properties
-//console.log("---Now checking " + AnimalClass.name);
-//console.log("AnimalClass is: " + AnimalClass);
-//console.log("AnimalClass constructor is: " + AnimalClass.constructor);
-//console.log("AnimalClass legs amount is: " + AnimalClass.legs);
-//AnimalClass.move();
 
 // Checking out rabbit functions and properties
 console.log("-  Logging out rabbit: ");
 rabbit.logName();
 rabbit.makeMove();
 
+// Please skip
 // creating another rabbit - babyRabbit. It will inherit from 'rabbit'
 //var rabbitBaby = {};
+// skip END
 
 // Now creating bird
 var bird = new AnimalClass("Bird class", "Birdie", 0, fly);
@@ -89,7 +86,7 @@ bird.logName();
 bird.makeMove();
 
 // In order to check the work of inheritance I'm changing rabbit.property
-console.log("---Rabbits population suddenly mutated. All rabbits legs amount decreased to 3...");
+console.log("---Rabbits  suddenly mutated. All rabbits legs amount decreased to 3...");
 rabbit.legs = 3;
 console.log("rabbit's legs amount now is: " + rabbit.legs);
 
@@ -99,7 +96,6 @@ console.log("---Now creating human");
 var HumanBeingClass = function (name, familyName, movementType) {
     BeingClass.call(this, "HumanBeing class");
     this.legs = 2;
-//    this.class = "AnimalClass";
     this.name = name;
     this.setMovementType(movementType)
 };
