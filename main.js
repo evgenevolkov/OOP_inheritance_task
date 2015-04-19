@@ -2,52 +2,119 @@
  * Created by Jenya on 18.04.15.
  */
 
-function Animal(name) {
-    this.legs = 4;
-    this.name = name;
-    return this.name;
+/// At first I'm creating general BeingClass. It will be the top of all being classes.
+function BeingClass(clas) {
+    this.clas = clas;
+    this.movementType = run;
 }
 
-Animal.prototype.move = function () {
-    console.log(this.name + " is running")
+// Than I'm adding move function to all beings.
+BeingClass.prototype.makeMove = function () {
+    return this.movementType.move(this.name);
 };
 
-//Animal.prototype.setMovementType = function (movementType) {
-//    this.move = movementType;
+//Making a method to print object's properties
+BeingClass.prototype.logName = function () {
+    console.log("This.class: " + this.clas + "; this.name: " + this.name + "; this.legs= " + this.legs)
+};
+
+//Now I'm setting movement methods, strategy and type switch - BEGIN
+BeingClass.prototype.setMovementType = function (newMovementType) {
+    this.movementType = newMovementType;
+};
+
+var Movement = function (func) {
+    this.move = func;
+};
+
+var jump = new Movement(function (name) {
+    console.log(name + " is jumping!")
+});
+
+var run = new Movement(function (name) {
+    console.log(name + " is running!");
+});
+var fly = new Movement(function (name) {
+    console.log(name + " is flying!")
+});
+
+//setting movement methods, strategy and type switch - END
+
+
+// ---- please skip these comments
+/// setting speak methods and strategy
+//BeingClass.prototype.speak = function() {
+//    this.speak()
 //};
-//Animal.prototype.move = function (movementType) {
-//     run();
-//};
-//var run = function () {
-//    console.log (this.name + " is running")
-//};
+// ----- Skip END
+
+
+// Now I'm creating animal class. It will be used for all animals.
 //
-//animal1.setMovementType(run);
+var AnimalClass = function (clas, name, legs, movementType) {
+    BeingClass.call(this, clas);
+    this.legs = legs;
+    this.name = name;
+    this.setMovementType(movementType)
+};
 
-var rabbit = new Animal("rabbit");
+AnimalClass.prototype = Object.create(BeingClass.prototype);
 
-console.log("rabbit.name: " + rabbit.name);
-console.log("rabbit is: " + rabbit);
-console.log("rabbits legs amount is: " + rabbit.legs);
-rabbit.move();
+// please skip
+//// adding speak method that will say it does't speak.
+//animalClass.speak = function () {
+//    cosole.log(this.name + "is an animal. It can't speak")
+//};
+// skip END
 
-var rabbit1 = {};
+// Now creating first animal - rabbit
+var rabbit = new AnimalClass("Rabbit class", "Rabbit Tim", 4, jump);
 
-rabbit1.__proto__ = rabbit;
+// Checking out rabbit functions and properties
+console.log("-  Logging out rabbit: ");
+rabbit.logName();
+rabbit.makeMove();
 
+// Please skip
+// creating another rabbit - babyRabbit. It will inherit from 'rabbit'
+//var rabbitBaby = {};
+// skip END
 
-console.log("rabbit1.name: " + rabbit1.name);
-console.log("rabbit1 is: " + rabbit1);
-console.log("rabbits1 legs amount is: " + rabbit1.legs);
-rabbit1.move();
+// Now creating bird
+var bird = new AnimalClass("Bird class", "Birdie", 0, fly);
+bird.logName();
+bird.makeMove();
 
-//var animal = { eats: true }
-//var rabbit = { jumps: true }
+// In order to check the work of inheritance I'm changing rabbit.property
+console.log("---Rabbits  suddenly mutated. All rabbits legs amount decreased to 3...");
+rabbit.legs = 3;
+console.log("rabbit's legs amount now is: " + rabbit.legs);
 
-rabbit1.name = "rabbit1";
-console.log("now rabbit1.name: " + rabbit1.name);
+// now creating Human being class. It will be used as specimen for all new human being creation
+console.log("---Now creating human");
 
+var HumanBeingClass = function (name, familyName, movementType) {
+    BeingClass.call(this, "HumanBeing class");
+    this.legs = 2;
+    this.name = name;
+    this.setMovementType(movementType)
+};
+HumanBeingClass.prototype = Object.create(BeingClass.prototype);
 
-//rabbit.__proto__ = animal  // inherit
+//Now creating first human being.
+var humanJack = new HumanBeingClass("Jack", "Johnson", run);
 
-//alert(rabbit.eats) // true
+//Checking out Jack's properties and functionality
+console.log("Jack.name: " + humanJack.name);
+console.log("Jack constructor is: " + humanJack.constructor);
+console.log("Jack legs amount is: " + humanJack.legs);
+
+humanJack.logName();
+humanJack.makeMove();
+
+// Change Jack's movement type to check if STRATEGY PATTERN works in a proper way
+console.log("Jack has just learned to jump");
+humanJack.setMovementType(jump);
+humanJack.makeMove();
+
+console.log("THE END");
