@@ -17,7 +17,7 @@ BeingClass.prototype.makeMove = function () {
 
 BeingClass.prototype.setLegsAmount = function (legsAmount) {
     this.legs = legsAmount;
-    return this
+    return this;
 };
 
 //Making a method to print object's properties
