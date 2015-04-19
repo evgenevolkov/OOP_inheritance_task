@@ -11,7 +11,8 @@ function BeingClass(clas) {
 
 // Than I'm adding move function to all beings.
 BeingClass.prototype.makeMove = function () {
-    return this.movementType.move(this.name);
+    this.movementType.move(this.name);
+    return this;
 };
 
 BeingClass.prototype.setLegsAmount = function (legsAmount) {
@@ -120,7 +121,7 @@ humanJack.logName().makeMove();
 
 // Change Jack's movement type to check if STRATEGY PATTERN works in a proper way
 console.log("Jack has just learned to jump");
-humanJack.setMovementType(move.jump).makeMove();
+humanJack.setMovementType(move.jump).makeMove().makeMove();
 
 console.log("THE END");
 
