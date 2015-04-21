@@ -125,3 +125,4 @@ humanJack.setMovementType(move.jump).makeMove().makeMove();
 
 console.log("THE END");
 
+
