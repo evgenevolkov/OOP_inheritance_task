@@ -51,17 +51,6 @@ move.fly = new Movement(function (name) {
     console.log(name + " is flying!")
 });
 
-//setting movement methods, strategy and type switch - END
-
-
-// ---- please skip these comments
-/// setting speak methods and strategy
-//BeingClass.prototype.speak = function() {
-//    this.speak()
-//};
-// ----- Skip END
-
-
 // Now I'm creating animal class. It will be used for all animals.
 //
 var AnimalClass = function (clas, name, legsAmount, movementType) {
@@ -70,13 +59,6 @@ var AnimalClass = function (clas, name, legsAmount, movementType) {
 };
 
 AnimalClass.prototype = Object.create(BeingClass.prototype);
-
-// please skip
-//// adding speak method that will say it does't speak.
-//animalClass.speak = function () {
-//    cosole.log(this.name + "is an animal. It can't speak")
-//};
-// skip END
 
 // Now creating first animal - rabbit
 var rabbit = new AnimalClass("Rabbit class", "Rabbit Tim", 4, move.jump);
