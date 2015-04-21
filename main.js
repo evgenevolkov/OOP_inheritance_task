@@ -91,7 +91,7 @@ bird.logName().makeMove();
 
 // In order to check the work of inheritance I'm changing rabbit.property
 console.log("---Rabbits  suddenly mutated. All rabbits legs amount decreased to 3...");
-rabbit.setLegsAmount(3).logName();
+rabbit.setLegsAmount(3).logName().makeMove();
 console.log("rabbit's legs amount now is: " + rabbit.legs);
 
 // now creating Human being class. It will be used as specimen for all new human being creation
@@ -102,6 +102,10 @@ var HumanBeingClass = function (name, familyName, movementType) {
     this.legs = 2;
     this.setMovementType(movementType);
     this.familyName = familyName;
+    this.logName = function () {
+        console.log("This.class: " + this.clas + "; this.name: " + this.name + " " + this.familyName + " this.legs= " + this.legs);
+        return this;
+    };
 };
 HumanBeingClass.prototype = Object.create(BeingClass.prototype);
 
