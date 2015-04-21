@@ -3,10 +3,11 @@
  */
 
 /// At first I'm creating general BeingClass. It will be the top of all being classes.
-function BeingClass(clas) {
+function BeingClass(clas, name, legsAmount) {
     this.clas = clas;
-    this.movementType = move.run;
-    this.legs = 0
+    this.name = name;
+    this.legs = legsAmount;
+    this.movementType = "";
 }
 
 // Than I'm adding move function to all beings.
@@ -32,11 +33,12 @@ BeingClass.prototype.setMovementType = function (newMovementType) {
     return this;
 };
 
+var move = {};
+
 var Movement = function (func) {
     this.move = func;
+    return this;
 };
-
-var move = {};
 
 move.jump = new Movement(function (name) {
     console.log(name + " is jumping!")
@@ -62,10 +64,8 @@ move.fly = new Movement(function (name) {
 
 // Now I'm creating animal class. It will be used for all animals.
 //
-var AnimalClass = function (clas, name, legs, movementType) {
-    BeingClass.call(this, clas);
-    this.legs = legs;
-    this.name = name;
+var AnimalClass = function (clas, name, legsAmount, movementType) {
+    BeingClass.call(this, clas, name, legsAmount);
     this.setMovementType(movementType)
 };
 
@@ -85,11 +85,6 @@ var rabbit = new AnimalClass("Rabbit class", "Rabbit Tim", 4, move.jump);
 console.log("-  Logging out rabbit: ");
 rabbit.logName().makeMove();
 
-// Please skip
-// creating another rabbit - babyRabbit. It will inherit from 'rabbit'
-//var rabbitBaby = {};
-// skip END
-
 // Now creating bird
 var bird = new AnimalClass("Bird class", "Birdie", 0, move.fly);
 bird.logName().makeMove();
@@ -97,15 +92,20 @@ bird.logName().makeMove();
 // In order to check the work of inheritance I'm changing rabbit.property
 console.log("---Rabbits  suddenly mutated. All rabbits legs amount decreased to 3...");
 rabbit.setLegsAmount(3).logName().makeMove();
+console.log("rabbit's legs amount now is: " + rabbit.legs);
 
 // now creating Human being class. It will be used as specimen for all new human being creation
 console.log("---Now creating human");
 
 var HumanBeingClass = function (name, familyName, movementType) {
-    BeingClass.call(this, "HumanBeing class");
+    BeingClass.call(this, "HumanBeing class", name);
     this.legs = 2;
-    this.name = name;
-    this.setMovementType(movementType)
+    this.setMovementType(movementType);
+    this.familyName = familyName;
+    this.logName = function () {
+        console.log("This.class: " + this.clas + "; this.name: " + this.name + " " + this.familyName + " this.legs= " + this.legs);
+        return this;
+    };
 };
 HumanBeingClass.prototype = Object.create(BeingClass.prototype);
 
@@ -113,7 +113,7 @@ HumanBeingClass.prototype = Object.create(BeingClass.prototype);
 var humanJack = new HumanBeingClass("Jack", "Johnson", move.run);
 
 //Checking out Jack's properties and functionality
-console.log("Jack.name: " + humanJack.name);
+console.log("Jack.name: " + humanJack.name, ", Jack.familyName: " + humanJack.familyName);
 console.log("Jack constructor is: " + humanJack.constructor);
 console.log("Jack legs amount is: " + humanJack.legs);
 
