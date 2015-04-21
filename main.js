@@ -3,15 +3,21 @@
  */
 
 /// At first I'm creating general BeingClass. It will be the top of all being classes.
-function BeingClass(clas, name) {
+function BeingClass(clas, name, legsAmount) {
     this.clas = clas;
     this.name = name;
+    this.legs = legsAmount;
     this.movementType = "";
 }
 
 // Than I'm adding move function to all beings.
 BeingClass.prototype.makeMove = function () {
     this.movementType.move(this.name);
+    return this;
+};
+
+BeingClass.prototype.setLegsAmount = function (legsAmount) {
+    this.legs = legsAmount;
     return this;
 };
 
@@ -58,9 +64,8 @@ move.fly = new Movement(function (name) {
 
 // Now I'm creating animal class. It will be used for all animals.
 //
-var AnimalClass = function (clas, name, legs, movementType) {
-    BeingClass.call(this, clas, name);
-    this.legs = legs;
+var AnimalClass = function (clas, name, legsAmount, movementType) {
+    BeingClass.call(this, clas, name, legsAmount);
     this.setMovementType(movementType)
 };
 
@@ -86,7 +91,7 @@ bird.logName().makeMove();
 
 // In order to check the work of inheritance I'm changing rabbit.property
 console.log("---Rabbits  suddenly mutated. All rabbits legs amount decreased to 3...");
-rabbit.legs = 3;
+rabbit.setLegsAmount(3).logName();
 console.log("rabbit's legs amount now is: " + rabbit.legs);
 
 // now creating Human being class. It will be used as specimen for all new human being creation
