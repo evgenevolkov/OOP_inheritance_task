@@ -7,7 +7,6 @@ function BeingClass(clas, name, legsAmount) {
     this.clas = clas;
     this.name = name;
     this.legs = legsAmount;
-    this.movementType = "";
 }
 
 // Than I'm adding move function to all beings.
