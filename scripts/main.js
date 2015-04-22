@@ -3,35 +3,20 @@
  */
 
 /// At first I'm creating general BeingClass. It will be the top of all being classes.
-require(['BeingClass', 'AnimalClass', 'HumanBeingClass'],
-    function (BeingClass, AnimalClass, HumanBeingClass) {
+require(['BeingClass', 'AnimalClass', 'HumanBeingClass', 'Movement', 'jump', 'run', 'fly'],
+    function (BeingClass, AnimalClass, HumanBeingClass, Movement, jump, run, fly) {
 
-        var Movement = function (func) {
-            this.move = func;
-        };
 
-        var move = {};
-
-        move.jump = new Movement(function (name) {
-            console.log(name + " is jumping!")
-        });
-
-        move.run = new Movement(function (name) {
-            console.log(name + " is running!");
-        });
-        move.fly = new Movement(function (name) {
-            console.log(name + " is flying!")
-        });
 
         // Now creating first animal - rabbit
-        var rabbit = new AnimalClass("Rabbit class", "Rabbit Tim", 4, move.jump);
+        var rabbit = new AnimalClass("Rabbit class", "Rabbit Tim", 4, jump);
 
         // Checking out rabbit functions and properties
         console.log("-  Logging out rabbit: ");
         rabbit.logName().makeMove();
 
         // Now creating bird
-        var bird = new AnimalClass("Bird class", "Birdie", 0, move.fly);
+        var bird = new AnimalClass("Bird class", "Birdie", 0, fly);
         bird.logName().makeMove();
 
         // In order to check the work of inheritance I'm changing rabbit.property
@@ -42,7 +27,7 @@ require(['BeingClass', 'AnimalClass', 'HumanBeingClass'],
         console.log("---Now creating human");
 
         //Now creating first human being.
-        var humanJack = new HumanBeingClass("Jack", "Johnson", move.run);
+        var humanJack = new HumanBeingClass("Jack", "Johnson", run);
 
         //Checking out Jack's properties and functionality
         console.log("Jack.name: " + humanJack.name);
@@ -53,7 +38,7 @@ require(['BeingClass', 'AnimalClass', 'HumanBeingClass'],
 
         // Change Jack's movement type to check if STRATEGY PATTERN works in a proper way
         console.log("Jack has just learned to jump");
-        humanJack.setMovementType(move.jump).makeMove().makeMove();
+        humanJack.setMovementType(jump).makeMove().makeMove();
 
         console.log("THE END");
 
