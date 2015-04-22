@@ -11,7 +11,7 @@ function BeingClass(clas, name, legsAmount) {
 
 // Than I'm adding move function to all beings.
 BeingClass.prototype.makeMove = function () {
-    this.movementType.move(this.name);
+    this.movementType(this.name);
     return this;
 };
 
@@ -35,8 +35,7 @@ BeingClass.prototype.setMovementType = function (newMovementType) {
 var move = {};
 
 var Movement = function (func) {
-    this.move = func;
-    return this;
+    return func;
 };
 
 move.jump = new Movement(function (name) {
