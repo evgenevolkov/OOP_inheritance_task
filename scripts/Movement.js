@@ -5,7 +5,7 @@
 define(
     function () {
         var Movement = function (func) {
-            this.move = func;
+            return func;
         };
 
         return (Movement);

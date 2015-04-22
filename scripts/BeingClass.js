@@ -10,7 +10,7 @@ define(function () {
 
     BeingClass.prototype = {
         makeMove: function () {
-            this.movementType.move(this.name);
+            this.movementType(this.name);
             return this;
         },
 
